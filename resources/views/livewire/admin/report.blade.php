@@ -42,7 +42,7 @@
                             SERVICES
                         </th>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
-                            AMOUNT
+                            FEE
                         </th>
                     </tr>
                 </thead>
@@ -54,7 +54,7 @@
                             <td class="border-2  text-gray-700  px-3 py-1">
                                 <ul>
                                     @foreach (\App\Models\BookingTransaction::where('booking_id', $item->id)->get() as $transaction)
-                                        <li>{{ $transaction->service->name }} x {{ $transaction->quantity }}
+                                        <li>{{ $transaction->service->name }} x {{ $transaction->quantity }}kg
                                         </li>
                                     @endforeach
                                 </ul>

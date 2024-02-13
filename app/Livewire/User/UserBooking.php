@@ -47,7 +47,7 @@ class UserBooking extends Component implements HasForms, HasTable
                 // ...
             ])
             ->actions([
-                ViewAction::make('view')->label('VIEW DETAILS')->color('warning')
+                // ViewAction::make('view')->label('VIEW DETAILS')->color('warning')
             ])
             ->bulkActions([
                 // ...

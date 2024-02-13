@@ -23,7 +23,7 @@
                                             fill="#1C274C" />
                                     </svg>
                                     <p class="2xl:text-7xl text-4xl text-center font-bold text-gray-700">
-                                        Laundry Booking System
+                                        Wellmade Laundry Shop
                                     </p>
                                     <svg class="absolute animate-pulse 2xl:-right-16 -right-8 text-main 2xl:-bottom-10 -bottom-5 2xl:h-10 h-8"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,15 +43,14 @@
                                 </div>
                                 <div>
                                     <p
-                                        class=" max-w-2xl 2xl:mt-10 mt-5 2xl:text-2xl text-xl  text-center text-gray-500">
-                                        Hassle free and affordable dry cleaning and
-                                        laundry delivered to your home.
+                                        class=" max-w-2xl 2xl:mt-10 mt-5 2xl:text-3xl text-xl  text-center text-gray-500">
+                                        Fresh Clothes, Fresh Life The right choice for your clothes.
                                     </p>
                                 </div>
                             </div>
                             <div
                                 class="flex relative z-30 items-center justify-center w-full max-w-xl pt-5 mx-auto md:pt-4">
-                                <x-button label="LAUNDRY NOW" href="{{ route('dashboard') }}" rounded dark
+                                <x-button label="BOOK NOW" href="{{ route('dashboard') }}" rounded dark
                                     right-icon="arrow-right" class="bg-main font-medium" lg />
                             </div>
                         </div>

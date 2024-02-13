@@ -56,9 +56,17 @@
 
 
                     <div class="inline-flex items-center gap-7 text-white list-none">
-                        <a class="hover:text-gray-300" href="">HOME</a>
-                        <a class="hover:text-gray-300" href="">ABOUT</a>
-                        <a class="hover:text-gray-300" href="">PRICING</a>
+                        @if (auth()->check())
+                            @if (auth()->user()->is_admin == false)
+                                <a class="hover:text-gray-300" href="{{ route('user.dashboard') }}">HOME</a>
+                            @else
+                                <a class="hover:text-gray-300" href="{{ route('welcome') }}">HOME</a>
+                            @endif
+                        @else
+                            <a class="hover:text-gray-300" href="{{ route('welcome') }}">HOME</a>
+                        @endif
+                        <a class="hover:text-gray-300" href="{{ route('about') }}">ABOUT</a>
+                        <a class="hover:text-gray-300" href="{{ route('pricing') }}">PRICING</a>
                         @if (auth()->check())
                             <a class="hover:text-gray-300" href="{{ route('user.booking') }}">MY BOOKING
                                 ({{ \App\Models\Booking::where('user_id', auth()->user()->id)->count() }})</a>

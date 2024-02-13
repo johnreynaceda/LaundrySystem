@@ -85,7 +85,7 @@ class Dashboard extends Component implements HasForms, HasTable
                     ),
                     Action::make('decline')->color('danger')->icon('heroicon-s-hand-thumb-down')->action(
                         function($record){
-                            $record->updated([
+                            $record->update([
                                 'status' => 'declined',
                             ]);
                             $api_key = '1aaad08e0678a1c60ce55ad2000be5bd';

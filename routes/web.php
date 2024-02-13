@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     if (auth()->check()) {
@@ -29,6 +29,13 @@ Route::get('/dashboard', function () {
         return redirect()->route('login');
        }
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/about', function(){
+    return view('pages.about');
+})->name('about');
+Route::get('/pricing', function(){
+    return view('pages.pricing');
+})->name('pricing');
 
 //admin routes
 Route::prefix('administrator')->group(
