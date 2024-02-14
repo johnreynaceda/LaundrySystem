@@ -39,7 +39,10 @@
                     <tr>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">FULLNAME</th>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
-                            SERVICES
+                            TYPE
+                        </th>
+                        <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
+                            KG
                         </th>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
                             FEE
@@ -54,11 +57,20 @@
                             <td class="border-2  text-gray-700  px-3 py-1">
                                 <ul>
                                     @foreach (\App\Models\BookingTransaction::where('booking_id', $item->id)->get() as $transaction)
-                                        <li>{{ $transaction->service->name }} x {{ $transaction->quantity }}kg
+                                        <li>{{ $transaction->service->name }}
                                         </li>
                                     @endforeach
                                 </ul>
                             </td>
+                            <td class="border-2  text-gray-700  px-3 py-1">
+                                <ul>
+                                    @foreach (\App\Models\BookingTransaction::where('booking_id', $item->id)->get() as $transaction)
+                                        <li>{{ $transaction->quantity }}kg
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </td>
+
                             <td class="border-2  text-gray-700  px-3 py-1">
                                 &#8369;{{ number_format($item->total_amount, 2) }}
                             </td>
@@ -66,11 +78,12 @@
                     @endforeach
                     <tr>
                         <td class=""></td>
+                        <td class=""></td>
                         <td class="text-right pr-1 font-bold text-gray-700">
                             TOTAL:
                         </td>
                         <td class="border-2  text-gray-700 font-bold  px-3 py-1">
-                            &#8369; {{ number_format($booking->sum('total_amount'), 2) }}
+                            &#8369;{{ number_format($booking->sum('total_amount'), 2) }}
                         </td>
                     </tr>
                 </tbody>
