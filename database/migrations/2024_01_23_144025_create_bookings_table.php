@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('proof_of_payment')->nullable();
+            $table->date('date')->nullable();
+            $table->dateTime('time')->nullable();
             $table->double('total_amount');
             $table->longText('note')->nullable();
             $table->string('status')->default('pending');

@@ -24,6 +24,7 @@
 </head>
 
 <body class="font-sans antialiased overflow-hidden 2xl:overflow-visible">
+    <x-dialog z-index="z-50" blur="md" align="center" />
     <div>
 
         <div class="w-full mx-auto   2xl:max-w-7xl">

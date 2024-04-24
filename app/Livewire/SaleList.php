@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Booking;
 use App\Models\Service;
 use App\Models\Shop\Product;
+use Carbon\Carbon;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -23,44 +24,20 @@ use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 
-class SaleList extends Component implements HasForms, HasTable
+class SaleList extends Component
 {
-    use InteractsWithTable;
-    use InteractsWithForms;
 
-    public function table(Table $table): Table
-    {
-        return $table
-            ->query(Booking::query()->where('status', 'completed'))
-            ->columns([
-                TextColumn::make('user.name')->label('USER'),
-                ViewColumn::make('services')->label('SERVICES')->view('filament.tables.columns.services'),
-                TextColumn::make('total_amount')->label('TOTAL AMOUNT')->formatStateUsing(
-                    function($record){
-                        return '₱'.number_format($record->total_amount,2);
-                    }
-                ),
-            ])
-            ->filters([
-                // ...
-            ])
-            ->actions([
-                // EditAction::make('edit')->color('success')->form([
-                //     TextInput::make('name')->required(),
-                //     Textarea::make('description')->required(),
-                //     TextInput::make('amount')->label('Price')->required(),
-                // ])->modalWidth('xl'),
-                // DeleteAction::make('delete'),
-            ])
-            ->bulkActions([
-                // ...
-            ]);
-    }
+public $selected = 'Daily';
+
 
     public function render()
     {
         return view('livewire.sale-list',[
-            'sales_total_amount' => Booking::where('status', 'completed')->sum('total_amount'),
+           'daily' => Booking::where('status', 'completed')->get(),
+           'weekly' => Booking::where('status', 'completed')->whereBetween('date', [Carbon::now(), Carbon::now()->subWeek()])->get(),
+           'monthly' => Booking::where('status', 'completed')->whereBetween('date', [Carbon::now(), Carbon::now()->subMonths()])->get(),
         ]);
     }
+
+
 }

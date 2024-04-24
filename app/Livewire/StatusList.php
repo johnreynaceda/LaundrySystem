@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Booking;
 use App\Models\Service;
 use App\Models\Shop\Product;
+use Carbon\Carbon;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -68,7 +69,7 @@ class StatusList extends Component implements HasForms, HasTable
                             $parameters = [
                                 'apikey' => $api_key,
                                 'number' => $record->user->contact,
-                                'message' => 'Dear ' . strtoupper($record->user->name) . ', your laundry has been completed.' . ' You may now able to pick-up your laundry. Thank You.',
+                                'message' => 'Dear ' . strtoupper($record->user->name) . ', your laundry has been completed.' . ' You may now able to pick-up your laundry. '. Carbon::parse($record->date)->format('F d, Y'). ', '. Carbon::parse($record->time)->format('H:i A') ,
                                 'sendername' => $sender,
                             ];
                             curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );

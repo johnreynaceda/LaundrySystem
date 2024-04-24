@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Booking;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Report extends Component
@@ -11,8 +12,8 @@ class Report extends Component
     public function render()
     {
         return view('livewire.admin.report',[
-            'booking' => Booking::when($this->date_from, function($record){
-                $record->whereBetween('updated_at', [$this->date_from, $this->date_to]);
+            'booking' => Booking::where('status', 'completed')->when($this->date_from, function($record){
+                $record->whereBetween('date', [Carbon::parse($this->date_from), Carbon::parse($this->date_to)]);
             })->get(),
         ]);
     }

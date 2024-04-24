@@ -17,8 +17,8 @@
                     <h1 class="font-bold text-sm leading-3 text-gray-500">Wellmade Laundry Shop</h1>
                 </div>
             </div>
-            <div>
-                <span class="text-2xl font-bold text-gray-700">SALES REPORT</span>
+            <div class="text-right">
+                <span class="text-2xl font-bold text-gray-700">COLLECTION REPORT</span>
                 @if ($date_to == null)
                     <p class="text-sm text-gray-700">{{ \Carbon\Carbon::parse($date_from)->format('F d, Y') }}
                     </p>
@@ -39,6 +39,9 @@
                     <tr>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">FULLNAME</th>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
+                            DATE
+                        </th>
+                        <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
                             TYPE
                         </th>
                         <th class="border-2  text-left px-2 text-sm font-bold text-gray-700 py-2">
@@ -53,6 +56,9 @@
                     @foreach ($booking as $item)
                         <tr>
                             <td class="border-2  text-gray-700  px-3 py-1">{{ $item->user->name }}
+                            </td>
+                            <td class="border-2  text-gray-700  px-3 py-1">
+                                {{ \Carbon\Carbon::parse($item->date)->format('F d, Y') . ' - ' . \Carbon\Carbon::parse($item->time)->format('h:i A') }}
                             </td>
                             <td class="border-2  text-gray-700  px-3 py-1">
                                 <ul>
@@ -77,6 +83,7 @@
                         </tr>
                     @endforeach
                     <tr>
+                        <td class=""></td>
                         <td class=""></td>
                         <td class=""></td>
                         <td class="text-right pr-1 font-bold text-gray-700">
