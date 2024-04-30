@@ -5,7 +5,9 @@
             <x-datetime-picker label="Date To" without-time wire:model.live="date_to" />
         </div>
         <div>
-            <x-button label="Print Report" dark icon="printer" @click="printOut($refs.printContainer.outerHTML);" />
+            @if (request()->routeIs('admin.report'))
+                <x-button label="Print Report" dark icon="printer" @click="printOut($refs.printContainer.outerHTML);" />
+            @endif
         </div>
     </div>
     <div class="mt-10 " x-ref="printContainer">
