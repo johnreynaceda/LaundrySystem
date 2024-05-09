@@ -20,7 +20,11 @@
                 </div>
             </div>
             <div class="text-right">
-                <span class="text-2xl font-bold text-gray-700">COLLECTION REPORT</span>
+                @if (request()->routeIs('admin.sales'))
+                    <span class="text-2xl font-bold text-gray-700">SALES INCOME REPORT</span>
+                @else
+                    <span class="text-2xl font-bold text-gray-700">COLLECTION REPORT</span>
+                @endif
                 @if ($date_to == null)
                     <p class="text-sm text-gray-700">{{ \Carbon\Carbon::parse($date_from)->format('F d, Y') }}
                     </p>
