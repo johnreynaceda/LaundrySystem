@@ -4,7 +4,7 @@
             <x-datetime-picker label="Date From" without-time wire:model.live="date_from" />
             <x-datetime-picker label="Date To" without-time wire:model.live="date_to" />
         </div>
-        <div>
+        <div wire:ignore>
             @if (request()->routeIs('admin.report'))
                 <x-button label="Print Report" dark icon="printer" @click="printOut($refs.printContainer.outerHTML);" />
             @endif
@@ -20,11 +20,14 @@
                 </div>
             </div>
             <div class="text-right">
-                @if (request()->routeIs('admin.sales'))
-                    <span class="text-2xl font-bold text-gray-700">SALES INCOME REPORT</span>
-                @else
-                    <span class="text-2xl font-bold text-gray-700">COLLECTION REPORT</span>
-                @endif
+                <div wire:ignore>
+                    @if (request()->routeIs('admin.sales'))
+                        <span class="text-2xl font-bold text-gray-700">SALES INCOME REPORT</span>
+                    @else
+                        <span class="text-2xl font-bold text-gray-700">COLLECTION REPORT</span>
+                    @endif
+                </div>
+
                 @if ($date_to == null)
                     <p class="text-sm text-gray-700">{{ \Carbon\Carbon::parse($date_from)->format('F d, Y') }}
                     </p>
