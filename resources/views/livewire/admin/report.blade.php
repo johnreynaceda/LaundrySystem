@@ -28,7 +28,7 @@
                     @endif
                 </div>
 
-                @if ($date_to == null)
+                {{-- @if ($date_to == null)
                     <p class="text-sm text-gray-700">{{ \Carbon\Carbon::parse($date_from)->format('F d, Y') }}
                     </p>
                 @else
@@ -39,7 +39,27 @@
                         <span
                             class="text-sm text-gray-700">{{ \Carbon\Carbon::parse($date_to)->format('F d, Y') }}</span>
                     </div>
-                @endif
+                @endif --}}
+                @php
+                    $start = \Carbon\Carbon::parse($date_from);
+                    $end = \Carbon\Carbon::parse($date_to);
+
+                    $interval = $start->diff($end);
+                    $dayDifference = $interval->days;
+
+                    if ($dayDifference <= 1) {
+                        $frequency = 'daily';
+                    } elseif ($dayDifference <= 7) {
+                        // Difference of 6 means 7 days inclusive
+                        $frequency = 'weekly';
+                    } elseif ($dayDifference <= 31) {
+                        $frequency = 'monthly';
+                    } else {
+                        $frequency = 'yearly';
+                    }
+                @endphp
+
+                {{ $frequency }}
             </div>
         </div>
         <div class="mt-5">
